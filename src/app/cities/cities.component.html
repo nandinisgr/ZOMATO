@@ -1,0 +1,42 @@
+<div class="block">
+    <div class="location" *ngIf="city_data">
+        <div class="row m-0">
+            <div class="col-6">
+                <h4><i class="mdi mdi-map-marker"></i> Location</h4>
+                <p>{{city_data.name}},</p>
+                <p *ngIf="city_data.state_name">{{city_data.state_name}}</p>
+                <p>{{city_data.country_name}}</p>
+            </div>
+            <div class="col-6">
+                <i class="mdi mdi-window-close" [routerLink]="['/home']"></i>
+            </div>
+        </div>
+
+    </div>
+    <div class="estab">
+        <div class="row m-0">
+            <div class="location"><h4><i class="mdi mdi-food"></i> Establisments</h4></div>
+            <div *ngFor="let item of establishment_data" class="col-lg-3 col-6">
+                <mat-card (click)="Proceed(item)">
+                    <img src="assets/images/dummy.png">
+                    <div class="name">
+                        {{item.establishment.name}}
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+    <div class="estab">
+        <div class="row m-0">
+            <div class="location"><h4><i class="mdi mdi-food"></i>Cuisines</h4></div>
+            <div *ngFor="let item of cuisins_data" class="col-lg-3 col-6">
+                <mat-card (click)="Proceed(item)">
+                    <img src="assets/images/dummy.png">
+                    <div class="name">
+                        {{item.cuisine.cuisine_name}}
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

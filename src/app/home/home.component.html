@@ -1,0 +1,23 @@
+<div class="home">
+    <div class="inner">
+        <img src="assets/images/logo.webp">
+        <div class="search-block">
+            <form [formGroup]="formgroup">
+
+                <mat-form-field class="form-field" appearance="outline">
+                    <input type="text" formControlName="name" (keyup)="onKeyUp()" [matAutocomplete]="auto" matInput
+                        placeholder="Enter Your City" (mouseenter)="mouse_enter()" >
+                        <button matSuffix (click)="procced()">
+                            <i  class="mdi mdi-arrow-right" aria-hidden="false"></i>
+                        </button> 
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let item of cities" [value]="item.name" >
+                                <span (click)="selected = item">{{item.name}}</span>
+                            </mat-option>
+                        </mat-autocomplete>
+                </mat-form-field>
+                
+            </form>
+        </div>
+    </div>
+</div>

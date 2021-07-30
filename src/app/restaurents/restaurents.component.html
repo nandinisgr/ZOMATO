@@ -1,0 +1,16 @@
+
+<div class="block">
+    <div class="estab">
+        <div class="row m-0">
+           <div class="location"><h4><i class="mdi mdi-food"></i>Restaurants</h4></div>
+            <div *ngFor="let item of retuarant_data" class="col-lg-3 col-6">
+                <mat-card ><br>
+                 <img src="assets/images/dummy.png">
+                    <div class="name">
+                        {{item.restaurant.name}}
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

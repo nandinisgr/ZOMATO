@@ -1,0 +1,51 @@
+.block{
+    max-width: 1280px;
+    margin: auto;
+    .location{
+        border: 1px solid;
+        padding: 10px 0px;
+        margin: 20px auto;
+        border-radius: 5px;
+        position: relative;
+        p{
+            margin:0 0 5px 30px;
+            font-style: italic;
+
+        }
+        .mdi-window-close{
+            position: absolute;
+            top:50px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+    }
+    .estab{
+        margin-top: 20px;
+        .mdi-food{
+            font-size: 30px;
+        }
+        mat-card{
+            padding: 0;
+            margin: 10px 0;
+            position: relative;
+            img{
+                max-width: 100%;
+            }
+            .name{
+                width: 100%;
+                position: absolute;
+                bottom: 0;
+                background-color: #c3c3c3;
+                padding: 10px;
+            }
+        }
+    }
+}
+@media screen and (min-width:100px)and(max-width:400px){
+    .block{
+
+        max-width: 1280px;
+
+}
+}
