@@ -49,3 +49,10 @@
 
 }
 }
+::ng-deep{
+    .mat-checkbox-inner-container{
+        position: absolute !important;
+        top:12px;
+        left:12px
+    }
+}

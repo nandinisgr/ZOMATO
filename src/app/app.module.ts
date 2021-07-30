@@ -13,7 +13,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { CitiesComponent } from './cities/cities.component';
 import {MatCardModule} from '@angular/material/card';
 import { RestaurentsComponent } from './restaurents/restaurents.component'
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +31,8 @@ import { RestaurentsComponent } from './restaurents/restaurents.component'
     MatInputModule,
     MatFormFieldModule,
     MatAutocompleteModule,
-    MatCardModule
+    MatCardModule,
+    MatCheckboxModule
   ],
   
   providers: [],

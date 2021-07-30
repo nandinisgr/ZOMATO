@@ -15,26 +15,36 @@
     </div>
     <div class="estab">
         <div class="row m-0">
-            <div class="location"><h4><i class="mdi mdi-food"></i> Establisments</h4></div>
-            <div *ngFor="let item of establishment_data" class="col-lg-3 col-6">
-                <mat-card (click)="Proceed(item)">
-                    <img src="assets/images/dummy.png">
-                    <div class="name">
-                        {{item.establishment.name}}
-                    </div>
+            <div class="location">
+                <h4><i class="mdi mdi-food"></i> Establisments</h4>
+            </div>
+            <div *ngFor="let item of establishment_data" class="col-lg-2 col-6">
+                <mat-card>
+                    <mat-checkbox (change)="Selected_data(item,'establishments')"
+                        [checked]="selected_estb == item.establishment.id">
+                        <img src="assets/images/dummy.png">
+                        <div class="name">
+                            {{item.establishment.name}}
+                        </div>
+                    </mat-checkbox>
                 </mat-card>
             </div>
         </div>
     </div>
     <div class="estab">
         <div class="row m-0">
-            <div class="location"><h4><i class="mdi mdi-food"></i>Cuisines</h4></div>
-            <div *ngFor="let item of cuisins_data" class="col-lg-3 col-6">
-                <mat-card (click)="Proceed(item)">
-                    <img src="assets/images/dummy.png">
-                    <div class="name">
-                        {{item.cuisine.cuisine_name}}
-                    </div>
+            <div class="location">
+                <h4><i class="mdi mdi-food"></i> Cuisins</h4>
+            </div>
+            <div *ngFor="let item of cuisins_data" class="col-lg-2 col-6">
+                <mat-card>
+                    <mat-checkbox (change)="Selected_data(item,'cuisins')"
+                        [checked]="selected__cuisins == item.cuisine.cuisine_id">
+                        <img src="assets/images/dummy.png">
+                        <div class="name">
+                            {{item.cuisine.cuisine_name}}
+                        </div>
+                    </mat-checkbox>
                 </mat-card>
             </div>
         </div>

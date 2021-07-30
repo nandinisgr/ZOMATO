@@ -22,12 +22,13 @@ export class CitiesComponent implements OnInit {
   subject: Subject<any> = new Subject();
   establishment_data: any = [];
   cuisins_data: any;
-  retuarant_data: any;
-  cuisine_data: any;
-  establish_data: any;
-  cusineid: any;
+  selected__cuisins: any
+  selected_estb: any
+
   constructor(public activatedRoute: ActivatedRoute, public router: Router, public server: ApiServicesService) {
+
   }
+
   ngOnInit(): void {
     this.sub = combineLatest(this.activatedRoute.params, this.activatedRoute.queryParams)
     this.sub.pipe(
@@ -39,25 +40,13 @@ export class CitiesComponent implements OnInit {
         city: this.city_data.name,
         key: 'Ajw-ihurpucGbghSvIszgKaGSdlY3PvLOLcSNmWHT2FfIJ0WIvn9mPEnITUv7223'
       }
-      this.cuisine_data = data.params
-      this.obj = {
-        cuisine: this.cuisine_data.name,
-        key: 'Ajw-ihurpucGbghSvIszgKaGSdlY3PvLOLcSNmWHT2FfIJ0WIvn9mPEnITUv7223'
-      }
-      this.establish_data = data.params
-      this.obj = {
-        establish: this.establish_data.name,
-        key: 'Ajw-ihurpucGbghSvIszgKaGSdlY3PvLOLcSNmWHT2FfIJ0WIvn9mPEnITUv7223'
-      }
       this.server.get_geoCodes(this.obj).subscribe(res => {
         this.response = res
         this.cordanates = this.response.resourceSets[0].resources[0].point.coordinates
         console.log("resss==", this.city_data, this.response)
         let est_input = {
           cityid: this.city_data.id,
-          geoCodes: this.cordanates,
-          cuisineid: this.cuisine_data.cuisine_id,
-          establishmentid: this.establish_data.id
+          geoCodes: this.cordanates
         }
         this.server.get_establishment_types(est_input).subscribe(res1 => {
           console.log("estab==", res1)
@@ -68,35 +57,30 @@ export class CitiesComponent implements OnInit {
           console.log("cusi==", res2)
           this.response = res2
           this.cuisins_data = this.response.cuisines
+        })
 
-        })
-        this.establish_data = data.params;
-        this.cuisine_data = data.params;
-        let obj = {
-          cityid: this.city_data.id,     
-          geoCodes: this.cordanates,
-          cuisineid: this.cuisine_data.cuisine_id,
-          establishmentid: this.establish_data.id
-        }
-        this.server.get_restaurant(obj).subscribe(res3 => {
-          this.response = res3
-          this.retuarant_data = this.response.restaurants
-          console.log("retuarant_data==", this.retuarant_data)
-        })
       })
 
     })
+    this.selected_estb = null
+    this.selected__cuisins = null
 
   }
-  Proceed(value: any) {
-    console.log("est--", value)
-    let obj = { cordanates: this.cordanates, establishment: value.establishment }
-    this.router.navigate(['/restaurents'], {
-      relativeTo: this.activatedRoute,
-      queryParams: obj,
-      replaceUrl: false,
-      queryParamsHandling: 'merge'
-    });
+  Selected_data(value: any, name: any) {
+    if (name == 'establishments') {
+      this.selected_estb = value.establishment.id
+    }
+    else {
+      this.selected__cuisins = value.cuisine.cuisine_id
+    }
+    if (this.selected__cuisins && this.selected_estb) {
+      let rest_obj = { cordanates: this.cordanates, estb_id: this.selected_estb, cuisin_id: this.selected__cuisins }
+      this.router.navigate(['/restaurents'], {
+        relativeTo: this.activatedRoute,
+        queryParams: rest_obj,
+        replaceUrl: false,
+        queryParamsHandling: 'merge'
+      });
+    }
   }
-
 }
